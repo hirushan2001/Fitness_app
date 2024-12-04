@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, StyleSheet,ActivityIndicator } from 'react-native';
 import React,{useEffect} from 'react';
 import { useState } from 'react';
 
@@ -28,6 +28,8 @@ const WorkoutCard = ({ title, bodyPart,level, equipment, type, duration, image,n
 export default function Home({navigation}) {
 
   const  [bodyPartList,setbodyPartList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); 
+
   useEffect(() => {
     const fetchBodyParts = async () => {
       try {
@@ -48,6 +50,8 @@ export default function Home({navigation}) {
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -66,25 +70,25 @@ export default function Home({navigation}) {
       equipment: 'Full Equipment',
       type: 'Strength',
       duration: '45 minutes',
-      image: require('../../assets/images/img1.jpg'), 
+      image: require('../../assets/images/back.jpg'), 
     },
     {
       title: 'Cardio Workout',
       bodyPart: 'cardio',
       level: 'Beginner Level',
-      equipment: 'Full Equipment',
+      equipment: 'Basic Equipment',
       type: 'Strength',
-      duration: '55 minutes',
-      image: require('../../assets/images/img2.jpg'), 
+      duration: '30 minutes',
+      image: require('../../assets/images/cardio.jpg'), 
     },
     {
       title: 'Chest Sculpt',
       bodyPart: 'chest',
-      level: 'Advanced Level',
+      level: 'Beginner Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
-      duration: '55 minutes',
-      image: require('../../assets/images/img3.jpg'), 
+      duration: '45 minutes',
+      image: require('../../assets/images/chest.jpg'), 
     },
     {
       title: 'Lower Arm Strength Surge',
@@ -92,17 +96,17 @@ export default function Home({navigation}) {
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
-      duration: '55 minutes',
-      image: require('../../assets/images/img4.jpg'), 
+      duration: '20 minutes',
+      image: require('../../assets/images/lower arms.jpg'), 
     },
     {
-      title: 'The Total Attack',
-      bodyPart: 'Neck Power Focus',
+      title: 'Neck Power Focus',
+      bodyPart: 'neck',
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
-      duration: '55 minutes',
-      image: require('../../assets/images/img5.jpg'),
+      duration: '15 minutes',
+      image: require('../../assets/images/neck.jpg'),
     },
     {
       title: 'Shoulder Domination',
@@ -110,8 +114,8 @@ export default function Home({navigation}) {
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
-      duration: '55 minutes',
-      image: require('../../assets/images/img6.jpg'),
+      duration: '45 minutes',
+      image: require('../../assets/images/shoulders.jpg'),
     },
     {
       title: 'Upper Arm Blaster',
@@ -119,8 +123,8 @@ export default function Home({navigation}) {
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
-      duration: '55 minutes',
-      image: require('../../assets/images/img7.jpg'), 
+      duration: '20 minutes',
+      image: require('../../assets/images/upper arms.jpg'), 
     },
     {
       title: 'Upper Legs Power-Up',
@@ -128,8 +132,8 @@ export default function Home({navigation}) {
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
-      duration: '55 minutes',
-      image: require('../../assets/images/img8.jpg'), 
+      duration: '35 minutes',
+      image: require('../../assets/images/upper legs.jpg'), 
     },
     {
       title: 'Lower Legs Power-Up',
@@ -137,8 +141,8 @@ export default function Home({navigation}) {
       bodyPart: 'lower legs',
       equipment: 'Basic Equipment',
       type: 'Endurance',
-      duration: '55 minutes',
-      image: require('../../assets/images/img9.jpg'), 
+      duration: '45 minutes',
+      image: require('../../assets/images/lower legs.jpg'), 
     },
     {
       title: 'Waist Workout',
@@ -146,10 +150,20 @@ export default function Home({navigation}) {
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
-      duration: '55 minutes',
-      image: require('../../assets/images/img10.jpg'), 
+      duration: '45 minutes',
+      image: require('../../assets/images/img12.jpg'), 
     },
   ];
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#78ff6f" />
+        <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
+  }
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -180,6 +194,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000000',
     padding: 16,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#121212",
+  },
+  loadingText: {
+    marginTop: 10,
+    fontSize: 16,
+    color: "#78ff6f", 
   },
   Toptext: {
     color: '#78ff6f',
