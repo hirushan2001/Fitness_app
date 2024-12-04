@@ -60,94 +60,94 @@ export default function Home({navigation}) {
 
   const workouts = [
     {
-      title: 'Strong and Big Chest',
+      title: 'Back Workout',
       bodyPart: 'back',
       level: 'Advanced Level',
       equipment: 'Full Equipment',
       type: 'Strength',
       duration: '45 minutes',
-      image: require('../../assets/images/img1.jpg'), // Add your image path
+      image: require('../../assets/images/img1.jpg'), 
     },
     {
-      title: 'Back Workout',
+      title: 'Cardio Workout',
       bodyPart: 'cardio',
       level: 'Beginner Level',
       equipment: 'Full Equipment',
       type: 'Strength',
       duration: '55 minutes',
-      image: require('../../assets/images/img2.jpg'), // Add your image path
+      image: require('../../assets/images/img2.jpg'), 
     },
     {
-      title: 'The Total Attack',
+      title: 'Chest Sculpt',
       bodyPart: 'chest',
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
       duration: '55 minutes',
-      image: require('../../assets/images/img3.jpg'), // Add your image path
+      image: require('../../assets/images/img3.jpg'), 
     },
     {
-      title: 'The Total Attack',
+      title: 'Lower Arm Strength Surge',
       bodyPart: 'lower arms',
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
       duration: '55 minutes',
-      image: require('../../assets/images/img4.jpg'), // Add your image path
+      image: require('../../assets/images/img4.jpg'), 
     },
     {
       title: 'The Total Attack',
-      bodyPart: 'neck',
+      bodyPart: 'Neck Power Focus',
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
       duration: '55 minutes',
-      image: require('../../assets/images/img5.jpg'), // Add your image path
+      image: require('../../assets/images/img5.jpg'),
     },
     {
-      title: 'The Total Attack',
+      title: 'Shoulder Domination',
       bodyPart: 'shoulders',
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
       duration: '55 minutes',
-      image: require('../../assets/images/img6.jpg'), // Add your image path
+      image: require('../../assets/images/img6.jpg'),
     },
     {
-      title: 'The Total Attack',
+      title: 'Upper Arm Blaster',
       bodyPart: 'upper arms',
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
       duration: '55 minutes',
-      image: require('../../assets/images/img7.jpg'), // Add your image path
+      image: require('../../assets/images/img7.jpg'), 
     },
     {
-      title: 'The Total Attack',
+      title: 'Upper Legs Power-Up',
       bodyPart: 'upper legs',
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
       duration: '55 minutes',
-      image: require('../../assets/images/img8.jpg'), // Add your image path
+      image: require('../../assets/images/img8.jpg'), 
     },
     {
-      title: 'The Total Attack',
+      title: 'Lower Legs Power-Up',
       level: 'Advanced Level',
       bodyPart: 'lower legs',
       equipment: 'Basic Equipment',
       type: 'Endurance',
       duration: '55 minutes',
-      image: require('../../assets/images/img9.jpg'), // Add your image path
+      image: require('../../assets/images/img9.jpg'), 
     },
     {
-      title: 'The Total Attack',
+      title: 'Waist Workout',
       bodyPart: 'waist',
       level: 'Advanced Level',
       equipment: 'Basic Equipment',
       type: 'Endurance',
       duration: '55 minutes',
-      image: require('../../assets/images/img10.jpg'), // Add your image path
+      image: require('../../assets/images/img10.jpg'), 
     },
   ];
 
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
     marginBottom: 8,
   },

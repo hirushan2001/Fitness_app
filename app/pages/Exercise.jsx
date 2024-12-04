@@ -6,9 +6,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
+  
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from '@react-navigation/native';
+import {Image} from 'expo-image';
 
 
 export default function Exercise() {
@@ -48,11 +50,12 @@ export default function Exercise() {
     fetchExercises();
   }, [bodyPart]);
   const renderExerciseItem = ({ item }) => (
+
 <TouchableOpacity style={styles.exerciseCard}>
   <View style={styles.exerciseDetails}>
     {/* Exercise Name */}
     <Text style={styles.exerciseName}>{item.name}</Text>
-
+    <Image source={{uri: item.gifUrl}} style={styles.exerciseImage} />
     {/* Equipment */}
     <View style={styles.infoRow}>
       <Text style={styles.label}>Equipment:</Text>
@@ -110,7 +113,7 @@ export default function Exercise() {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Text style={styles.backButtonText}>{"<"}</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Exercises</Text>
+        <Text style={styles.headerTitle}>{bodyPart.charAt(0).toUpperCase() + bodyPart.slice(1)} Exercises</Text>
       </View>
       <FlatList
         data={bodyPartListData}
@@ -188,6 +191,12 @@ const styles = StyleSheet.create({
   },
   exerciseDetails: {
     flexDirection: "column",
+  },
+  exerciseImage: {
+    width: "100%",
+    height: 200,
+    borderRadius: 10,
+    marginBottom: 10,
   },
   exerciseName: {
     fontSize: 18,
