@@ -6,15 +6,18 @@ import Welcome from './pages/Welcome';
 import  Home from './pages/Home';
 import Exercise from './pages/Exercise';
 const Stack = createStackNavigator();
+import {ClickCountProvider} from './contexts/ClickCountContext';
 
 export default function App() {
   return (
+    <ClickCountProvider>
       <Stack.Navigator initialRouteName="Welcome">
-        <Stack.Screen name="Welcome" component={Welcome}     options={{ headerShown: false, animationEnabled: false }} />
+        <Stack.Screen name="Welcome" component={Welcome}     options={{ headerShown: false }} />
         <Stack.Screen name="Signin" component={Signin}  options={{ headerShown: false }} />
         <Stack.Screen name="Signup" component={Signup}  options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={Home}  options={{ headerShown: false }} />
         <Stack.Screen name="Exercise" component={Exercise}  options={{ headerShown: false }} />
       </Stack.Navigator>
+</ClickCountProvider>
   );
 }
