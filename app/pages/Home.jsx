@@ -29,7 +29,7 @@ export default function Home({ navigation }) {
             headers: {
               "x-rapidapi-host": "exercisedb.p.rapidapi.com",
               "x-rapidapi-key":
-                "df6d8b0ccbmsha56850229e8f6adp1c317cjsn66611239aeee",
+                "478a860e9dmsh0741bd374912284p1489d8jsnbe5ab15d665f",
             },
           }
         );
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
   },
   Toptext: {
     color: "#78ff6f",
+    marginTop: 20,
     marginLeft: 10,
     fontSize: 15,
   },

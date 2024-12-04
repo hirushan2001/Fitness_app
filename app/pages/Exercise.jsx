@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
+  StatusBar
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
@@ -29,7 +30,7 @@ export default function Exercise() {
           headers: {
             "x-rapidapi-host": "exercisedb.p.rapidapi.com",
             "x-rapidapi-key":
-              "df6d8b0ccbmsha56850229e8f6adp1c317cjsn66611239aeee",
+              "478a860e9dmsh0741bd374912284p1489d8jsnbe5ab15d665f",
           },
         });
 
@@ -69,6 +70,8 @@ export default function Exercise() {
 
   return (
     <View style={styles.container}>
+            <StatusBar barStyle="light-content" backgroundColor="#121212" />
+
       <View style={styles.headerContainer}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
