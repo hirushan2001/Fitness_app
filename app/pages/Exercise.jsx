@@ -19,6 +19,7 @@ export default function Exercise() {
   const [bodyPartListData, setBodyPartListData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  console.log(bodyPart);
 
   // fetch data from API
   useEffect(() => {

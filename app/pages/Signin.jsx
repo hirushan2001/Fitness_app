@@ -14,10 +14,12 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Signin({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const insets = useSafeAreaInsets();
 
   const handleSignin = () => {
@@ -33,7 +35,7 @@ export default function Signin({ navigation }) {
     }
     console.log("Email:", email);
     console.log("Password:", password);
-    navigation.navigate("Home");
+    navigation.navigate("Home", { email: email });
   };
 
   return (
@@ -65,14 +67,26 @@ export default function Signin({ navigation }) {
               value={email}
               onChangeText={(text) => setEmail(text)}
             />
-            <TextInput
-              style={styles.input}
-              placeholder="Password"
-              placeholderTextColor="#AAA"
-              secureTextEntry
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-            />
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={styles.passwordInput}
+                placeholder="Password"
+                placeholderTextColor="#AAA"
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+              />
+              <TouchableOpacity
+                style={styles.eyeIcon}
+                onPress={() => setShowPassword(!showPassword)}
+              >
+                <Ionicons
+                  name={showPassword ? "eye-outline" : "eye-off-outline"}
+                  size={24}
+                  color="#AAA"
+                />
+              </TouchableOpacity>
+            </View>
             <TouchableOpacity style={styles.button} onPress={handleSignin}>
               <Text style={styles.buttonText}>Sign In</Text>
             </TouchableOpacity>
@@ -129,6 +143,23 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: "#FFF",
     fontSize: 16,
+  },
+  passwordContainer: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#1E1E1E",
+    borderRadius: 8,
+    marginBottom: 20,
+  },
+  passwordInput: {
+    flex: 1,
+    padding: 15,
+    color: "#FFF",
+    fontSize: 16,
+  },
+  eyeIcon: {
+    padding: 15,
   },
   button: {
     width: "100%",
