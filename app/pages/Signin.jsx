@@ -58,18 +58,26 @@ export default function Signin({ navigation }) {
           </View>
           <View style={styles.content}>
             <Text style={styles.title}>Sign In</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Email"
-              placeholderTextColor="#AAA"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-            />
-            <View style={styles.passwordContainer}>
+
+            {/* Email Input */}
+            <View style={styles.inputContainer}>
+              <Ionicons name="mail-outline" size={24} color="#AAA" style={styles.icon} />
               <TextInput
-                style={styles.passwordInput}
+                style={styles.input}
+                placeholder="Email"
+                placeholderTextColor="#AAA"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+              />
+            </View>
+
+            {/* Password Input */}
+            <View style={styles.inputContainer}>
+              <Ionicons name="lock-closed-outline" size={24} color="#AAA" style={styles.icon} />
+              <TextInput
+                style={styles.input}
                 placeholder="Password"
                 placeholderTextColor="#AAA"
                 secureTextEntry={!showPassword}
@@ -87,6 +95,7 @@ export default function Signin({ navigation }) {
                 />
               </TouchableOpacity>
             </View>
+
             <TouchableOpacity style={styles.button} onPress={handleSignin}>
               <Text style={styles.buttonText}>Sign In</Text>
             </TouchableOpacity>
@@ -135,31 +144,26 @@ const styles = StyleSheet.create({
     color: "#FFF",
     marginBottom: 30,
   },
-  input: {
-    width: "100%",
-    backgroundColor: "#1E1E1E",
-    borderRadius: 8,
-    padding: 15,
-    marginBottom: 20,
-    color: "#FFF",
-    fontSize: 16,
-  },
-  passwordContainer: {
+  inputContainer: {
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#1E1E1E",
     borderRadius: 8,
     marginBottom: 20,
+    paddingHorizontal: 10,
   },
-  passwordInput: {
+  icon: {
+    marginRight: 10,
+  },
+  input: {
     flex: 1,
-    padding: 15,
+    paddingVertical: 15,
     color: "#FFF",
     fontSize: 16,
   },
   eyeIcon: {
-    padding: 15,
+    padding: 5,
   },
   button: {
     width: "100%",

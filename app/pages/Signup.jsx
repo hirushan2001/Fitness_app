@@ -15,7 +15,8 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from "@expo/vector-icons";
+
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -64,17 +65,24 @@ export default function Signup({ navigation }) {
           </View>
           <View style={styles.content}>
             <Text style={styles.title}>Sign Up</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Email"
-              placeholderTextColor="#AAA"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-            />
 
+            {/* Email Input */}
+            <View style={styles.inputContainer}>
+              <Ionicons name="mail-outline" size={20} color="#AAA" style={styles.icon} />
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                placeholderTextColor="#AAA"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+              />
+            </View>
+
+            {/* Password Input */}
             <View style={styles.passwordContainer}>
+              <Ionicons name="lock-closed-outline" size={20} color="#AAA" style={styles.icon} />
               <TextInput
                 style={styles.passwordInput}
                 placeholder="Password"
@@ -95,7 +103,9 @@ export default function Signup({ navigation }) {
               </TouchableOpacity>
             </View>
 
+            {/* Confirm Password Input */}
             <View style={styles.passwordContainer}>
+              <Ionicons name="lock-closed-outline" size={20} color="#AAA" style={styles.icon} />
               <TextInput
                 style={styles.passwordInput}
                 placeholder="Confirm Password"
@@ -122,8 +132,7 @@ export default function Signup({ navigation }) {
 
             <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
               <Text style={styles.signinText}>
-                Already have an account?{" "}
-                <Text style={styles.signinLink}>Sign In</Text>
+                Already have an account? <Text style={styles.signinLink}>Sign In</Text>
               </Text>
             </TouchableOpacity>
           </View>
@@ -165,22 +174,32 @@ const styles = StyleSheet.create({
     color: "#FFF",
     marginBottom: 30,
   },
-  input: {
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
     width: "100%",
     backgroundColor: "#1E1E1E",
     borderRadius: 8,
-    padding: 15,
+    paddingHorizontal: 10,
     marginBottom: 20,
+  },
+  icon: {
+    marginRight: 10,
+  },
+  input: {
+    flex: 1,
+    padding: 15,
     color: "#FFF",
     fontSize: 16,
   },
   passwordContainer: {
-    width: "100%",
     flexDirection: "row",
     alignItems: "center",
+    width: "100%",
     backgroundColor: "#1E1E1E",
     borderRadius: 8,
     marginBottom: 20,
+    paddingHorizontal: 10,
   },
   passwordInput: {
     flex: 1,
