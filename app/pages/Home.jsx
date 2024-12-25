@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef
+} from "react";
 import {
   View,
   Text,
@@ -9,6 +10,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   Modal,
+  Animated,
 } from "react-native";
 import WorkoutCard from "../components/WorkoutCard";
 import workouts from "../Data/workouts";
@@ -22,6 +24,48 @@ export default function Home({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
   const { clickCount } = useClickCount();
   const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
+
+  const blinkAnim = useRef(new Animated.Value(1)).current;
+  const prevClickCountRef = useRef(clickCount);
+
+  // Blinking animation setup
+  useEffect(() => {
+    // Only blink when count changes
+    if (prevClickCountRef.current !== clickCount) {
+      // Reset animation
+      blinkAnim.setValue(1);
+      
+      // Create blinking animation
+      const blinkAnimation = Animated.sequence([
+        Animated.timing(blinkAnim, {
+          toValue: 0.5,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(blinkAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(blinkAnim, {
+          toValue: 0.5,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(blinkAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        })
+      ]);
+
+      blinkAnimation.start();
+
+      // Update previous click count
+      prevClickCountRef.current = clickCount;
+    }
+  }, [clickCount, blinkAnim]);
+
 
   useEffect(() => {
     const fetchBodyParts = async () => {
@@ -134,9 +178,24 @@ export default function Home({ navigation }) {
         </View>
       </Modal>
 
-      <View style={styles.floatingButton}>
+      <Animated.View 
+        style={[
+          styles.floatingButton, 
+          { 
+            opacity: blinkAnim,
+            transform: [
+              { 
+                scale: blinkAnim.interpolate({
+                  inputRange: [0.5, 1],
+                  outputRange: [0.95, 1]
+                }) 
+              }
+            ]
+          }
+        ]}
+      >
         <Text style={styles.buttonText}>{clickCount}</Text>
-      </View>
+      </Animated.View>
     </SafeAreaView>
   );
 }
